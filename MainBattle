@@ -1,0 +1,71 @@
+//--------------------------------------
+// Assignment (4)
+// Written by:(Zilu Mou 40176355)
+// For Comp 248 Section(PK-X)-Fall 2020
+//--------------------------------------
+
+
+// This is the main method where the main actions take place
+// including the player's inputs and rule out those who do not respect the rules
+
+
+public class battle {
+	public enum GridSize {MAX_ROW(8),MAX_COLUMN(8);
+		private int value;
+		private GridSize(int value){
+			this.value=value;
+		}
+		public int getValue()
+		{
+			return value;
+		}
+	}
+	private static object[][]battleField;
+
+
+
+
+	public static void main(String[] args) {
+		battleField=new object[GridSize.MAX_ROW.getValue()][GridSize.MAX_COLUMN.getValue()];
+		array1.fillBattle(battleField);
+
+		System.out.println("Hi,welcome to the Battleship game!");
+		array1.userInput();
+		array1.computerInput();
+		System.out.println("Ok,the computer has put his ships and grenades at random. Let's play!");
+		array1.showBattleCalled(battleField);
+
+		while(array1.getUserShipLeft()>0&&array1.getCompShipLeft()>0)
+		{
+			array1.userRocket();
+			array1.compRocket();
+		}
+		if (array1.getUserShipLeft()==0)
+		{
+			System.out.println("You lose! All your ships have been hit!");
+			array1.showBattle(battleField);
+			System.exit(0);
+		}
+		else if (array1.getCompShipLeft()==0)
+		{
+			System.out.println("You win! All the computer's ships have been hit! Congratulations!");
+			array1.showBattle(battleField);
+			System.exit(0);
+		}
+	}
+
+
+	/**
+	 * Accessor method.
+	 * @return Returns the array.
+	 */
+	public static object[][] getBattleArray()
+	{
+		object[][]temp=new object[GridSize.MAX_ROW.getValue()][GridSize.MAX_COLUMN.getValue()];
+		for(int i=0; i<battleField.length;i++)
+			for(int j=0;j<battleField[i].length;j++)
+				temp[i][j]=battleField[i][j];
+		return temp;
+	}
+
+
