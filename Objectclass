@@ -1,0 +1,177 @@
+//--------------------------------------
+// Assignment (4)
+// Written by:(Zilu Mou 40176355)
+// For Comp 248 Section(PK-X)-Fall 2020
+//--------------------------------------
+
+//this class allows players and the program to change the state of the game
+
+
+public class object {
+	private char value, owner;
+	private boolean ifOccupied;
+	private boolean getCalled;
+
+	
+	 //This is the default constructor.
+	 
+	public object()
+	{
+		this.value='_';
+		this.ifOccupied=false;
+		this.getCalled=false;
+	}
+
+
+	//This is the copy constructor.
+	 
+	public object(object anotherObject)
+	{
+		this.value=anotherObject.getValue();
+		this.ifOccupied=anotherObject.getIfOccupied();
+		this.owner=anotherObject.getOwner();
+		
+	}
+
+	/**
+	 * Accessor method.
+	 * @return Returns the instance variable "value" of the calling object.
+	 */
+	public char getValue()
+	{
+		return value;
+	}
+
+	/**
+	 * Accessor method.
+	 * @return Returns the instance variable "owner" of the calling object.
+	 */
+	public char getOwner()
+	{
+		return owner;
+	}
+
+	/**
+	 * Accessor method.
+	 * @return Returns true if the position has been occupied.
+	 */
+	public boolean getIfOccupied()
+	{
+		return ifOccupied;
+	}
+
+	/**
+	 * Accessor method.
+	 * @return Returns true if the position has been called.
+	 */
+	public boolean getCalled()
+	{
+		return getCalled;
+	}
+
+	
+	public void setValue(char newValue)
+	{
+		value=newValue;
+	}
+
+	
+	public void setOwner(char newOwner)
+	{
+		owner=newOwner;
+	}
+
+	
+	public void setOccupied()
+	{
+		ifOccupied=true;
+	}
+
+	
+	public void setGetCalled()
+	{
+	  getCalled=true;	
+	}
+
+	
+	public void setObjectToShipByUser()
+	{
+		this.value='s';
+		this.owner='H';
+		this.ifOccupied=true;
+	}
+
+	
+	public void setObjectToGrenadeByUser()
+	{
+		this.value='g';
+		this.owner='H';
+		this.ifOccupied=true;
+	}
+
+	
+	 
+	public void setObjectToShipByComp()
+	{
+		this.value='S';
+		this.owner='C';
+		this.ifOccupied=true;
+	}
+
+	//Mutator method.
+	 
+	public void setObjectToGrenadeByComp()
+	{
+		this.value='G';
+		this.owner='C';
+		this.ifOccupied=true;
+	}
+
+	// This method is used to determine if a user's ship had been hit.
+	 
+	public boolean userShipGetHit()
+	{
+		return ((value=='s'&&owner=='H'&&getCalled==false));
+		
+	}
+
+	//This method is used to determine if a computer's ship had been hit.
+	 
+	public boolean compShipGetHit()
+	{
+		return ((value=='S'&&owner=='C'&&getCalled==false));
+
+	}
+
+	//This method is used to determine if a user's grenade had been hit.
+	 
+	public boolean userGrenadeGetHit()
+	{
+		return ((value=='g'&&owner=='H'&&getCalled==false));
+		
+	}
+
+	//This method is used to determine if a computer's grenade had been hit.
+	 
+	public boolean compGrenadeGetHit()
+	{
+		return (value=='G'&&owner=='C'&&getCalled==false);
+
+	}
+
+	//This method is used to determine if an empty slot had been hit.
+	 
+	public boolean emptyPositionGetHit()
+	{
+		return (value=='_'&&getCalled==false);
+	}
+
+	
+	public String toString()
+	{
+		if(this.getOwner()!='H'&&this.getOwner()!='C')
+		return ("This is an empty slot.");
+		else 
+		return ("There is a "+value+" in this slot that belongs to "+owner);
+	}
+}
